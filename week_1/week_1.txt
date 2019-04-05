@@ -1,0 +1,22 @@
+Intro
+=======
+
+NP-Complete: 
+- Can check if solution quickly, i.e. in polynomial time
+- IF we can solve one NP-complete quickly, we can solve them all
+- Widely believed to take exponential time
+
+Power Restoration Problem
+- Reducing the time to restore a black out
+
+Philosopy
+=======
+
+- Constraint Programming
+- Local Search
+- Integer Programming
+
+Assignment: One NP-Hard problem a week and optimize it
+
+15 hours a week
+1 to 3 of lectures, 12-14 hours of coding
