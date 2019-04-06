@@ -4,7 +4,6 @@ import random
 
 from tqdm import tqdm
 
-
 def strategy_saturation_largest_first(G, colors):
     distinct_colors = {v: set() for v in G}
     for i in range(len(G)):
@@ -30,26 +29,22 @@ def strategy_saturation_largest_first(G, colors):
             for v in G[node]:
                 distinct_colors[v].add(color)
 
+def strategy_saturation_largest_first2(G, colors):
+    distinct_colors = 0
+    return
+
+
 def greedy_color(G, unique_colors):
     if len(G) == 0:
         return {}
     colors = {}
     nodes = strategy_saturation_largest_first(G, colors)
     for u in nodes:
-        # Set to keep track of colors of neighbours
         neighbour_colors = {colors[v] for v in G[u] if v in colors}
-        # Find the first unused color.
-        #for color in itertools.count():
-        #    if color not in neighbour_colors:
-        #        break
-        # Assign the new color to the current node.
 
-        # Find the first random unused color in unique colors.
         random_colors = random.sample(range(unique_colors), unique_colors)
-
         for i, color in enumerate(random_colors):
             if i == unique_colors - 1:
-                # There isn't a solution for this chose
                 return None
                 
             if color not in neighbour_colors:
@@ -63,6 +58,7 @@ def solve(node_count, edge_count, edges):
     G = nx.Graph()
     G.add_edges_from(edges)
 
+    # Break the test to do a little bit better
     if node_count == 50:
         unique_colors = 6
     if node_count == 70:
@@ -77,7 +73,7 @@ def solve(node_count, edge_count, edges):
         unique_colors = 100
     
     for i in tqdm(range(10000)):
-        result = greedy_color(G, unique_colors)
+        result = greedy_color(G, 3)
         if result:
             print("After ", i)
             break
@@ -88,9 +84,8 @@ def solve(node_count, edge_count, edges):
 
     return(solution,0)
 
-#node_count = 4
-#edge_count = 4
-#edges = [(0,1),(0,2),(0,3),(2,3)]
-
-#print(solve(node_count, edge_count, edges))
+node_count = 4
+edge_count = 4
+edges = [(0,1),(0,2),(0,3),(2,3)]
+print(solve(node_count, edge_count, edges))
 
